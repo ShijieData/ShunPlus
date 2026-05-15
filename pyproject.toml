@@ -1,0 +1,57 @@
+[project]
+name = "shunplus"
+version = "0.1.0"
+description = "ShunPlus 数据 API Python SDK"
+readme = "README.md"
+authors = [
+    { name = "ShunPlus", email = "service@shijiedata.com" }
+]
+license = "MIT"
+license-files = ["LICENSE"]
+requires-python = ">=3.8"
+keywords = ["shunplus", "shunying", "market-data", "financial-data", "sdk"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Office/Business :: Financial",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+dependencies = [
+    "httpx>=0.28.1",
+    "pandas>=2.0,<2.1; python_version >= '3.8' and python_version < '3.9'",
+    "pandas>=2.0; python_version >= '3.9'",
+]
+
+[project.urls]
+Homepage = "https://api.shunplus.com"
+Documentation = "https://api.shunplus.com"
+Repository = "https://github.com/ShijieData/ShunPlus"
+Source = "https://github.com/ShijieData/ShunPlus"
+Issues = "https://github.com/ShijieData/ShunPlus/issues"
+
+[build-system]
+requires = ["uv_build>=0.11.7,<0.12.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0,<9.0",
+    "ruff>=0.15.12",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py38"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+ignore = ["UP006", "UP007", "UP045"]
