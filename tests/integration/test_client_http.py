@@ -96,7 +96,6 @@ def test_client_sends_bearer_token_and_returns_table_result() -> None:
         ("SZ301662", "SZ301662"),
         ("301662.SZ", "SZ301662"),
         ("603626.sh", "SH603626"),
-        ("06999.HK", "HK06999"),
     ],
 )
 def test_client_normalizes_symbol_before_request(

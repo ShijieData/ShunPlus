@@ -46,10 +46,8 @@ DEFAULT_BASE_URL = "https://api.shunplus.com"
 TOKEN_ENV_NAMES = ("SHUNPLUS_API_TOKEN", "SHUNPLUS_TOKEN")
 TOKEN_CONFIG_FILE_ENV_NAME = "SHUNPLUS_CONFIG_FILE"
 _GLOBAL_TOKEN: Optional[str] = None
-_A_SHARE_PREFIX_SYMBOL_RE = re.compile(r"^(SZ|SH|BJ)(\d{6})$")
-_A_SHARE_SUFFIX_SYMBOL_RE = re.compile(r"^(\d{6})\.(SZ|SH|BJ)$")
-_HK_PREFIX_SYMBOL_RE = re.compile(r"^HK(\d{5})$")
-_HK_SUFFIX_SYMBOL_RE = re.compile(r"^(\d{5})\.HK$")
+_A_SHARE_PREFIX_SYMBOL_RE = re.compile(r"^(SZ|SH)(\d{6})$")
+_A_SHARE_SUFFIX_SYMBOL_RE = re.compile(r"^(\d{6})\.(SZ|SH)$")
 _DATE_COMPACT_RE = re.compile(r"^\d{8}$")
 _DATETIME_COMPACT_RE = re.compile(r"^(\d{8})(?:[ T]?)(\d{6})$")
 _DATETIME_PARAM_NAMES = {"start_time", "end_time"}
@@ -1445,7 +1443,7 @@ def _normalize_symbol(value: Any) -> Any:
         msg = "symbol 不能为空"
         raise ValidationError(msg, status_code=422)
 
-    if _A_SHARE_PREFIX_SYMBOL_RE.fullmatch(symbol) or _HK_PREFIX_SYMBOL_RE.fullmatch(symbol):
+    if _A_SHARE_PREFIX_SYMBOL_RE.fullmatch(symbol):
         return symbol
 
     match = _A_SHARE_SUFFIX_SYMBOL_RE.fullmatch(symbol)
@@ -1453,15 +1451,10 @@ def _normalize_symbol(value: Any) -> Any:
         code, exchange = match.groups()
         return f"{exchange}{code}"
 
-    match = _HK_SUFFIX_SYMBOL_RE.fullmatch(symbol)
-    if match:
-        (code,) = match.groups()
-        return f"HK{code}"
-
     msg = (
         "symbol 格式不支持，请使用行情库代码格式 "
-        "SZ301662、SH603626、BJ920693、HK06999，"
-        "或兼容格式 301662.SZ、603626.SH、920693.BJ、06999.HK"
+        "SZ301662、SH603626，"
+        "或兼容格式 301662.SZ、603626.SH"
     )
     raise ValidationError(msg, status_code=422)
 

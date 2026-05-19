@@ -11,10 +11,6 @@ from shunplus.client import _normalize_symbol
         ("sz301662", "SZ301662"),
         (" 301662.SZ ", "SZ301662"),
         ("603626.SH", "SH603626"),
-        ("920693.BJ", "BJ920693"),
-        ("HK06999", "HK06999"),
-        ("hk06999", "HK06999"),
-        ("06999.HK", "HK06999"),
     ],
 )
 def test_normalize_symbol_to_backend_market_code(raw: str, expected: str) -> None:
@@ -27,8 +23,12 @@ def test_normalize_symbol_to_backend_market_code(raw: str, expected: str) -> Non
         "",
         "000001",
         "00700",
+        "HK06999",
+        "hk06999",
+        "06999.HK",
         "HK6999",
         "6999.HK",
+        "920693.BJ",
         "AAPL",
         "aapl.us",
         "SZ30166",

@@ -131,7 +131,7 @@ print(result.has_more)
 from shunplus import Client
 
 client = Client()
-df = client.df.symbols(exchange="HK", limit=20)
+df = client.df.symbols(exchange="SZ", limit=20)
 print(df.head())
 ```
 
@@ -165,11 +165,8 @@ SDK 会自动识别并规范这些常见写法：
 - `SZ301662` -> `SZ301662`
 - `301662.SZ` -> `SZ301662`
 - `603626.SH` -> `SH603626`
-- `920693.BJ` -> `BJ920693`
-- `HK06999` -> `HK06999`
-- `06999.HK` -> `HK06999`
 
-不建议传纯数字代码，例如 `301662` 或 `06999`，SDK 不会替你猜市场。
+不建议传纯数字代码，例如 `301662`，SDK 不会替你猜市场。
 
 ### 时间参数
 
@@ -347,7 +344,7 @@ rows = client.symbols(
 )
 ```
 
-常见 `exchange` 可以传 `SZ`、`SH`、`BJ`、`HK`。
+常见 `exchange` 可以传 `SZ`、`SH`。
 
 #### `factors`
 
@@ -369,7 +366,7 @@ rows = client.factors(
 
 ```python
 rows = client.stock_news(
-    symbol="06999.HK",
+    symbol="603626.SH",
     source="xueqiu",
     start_time="2026-05-01",
     end_time="2026-05-10",
@@ -472,7 +469,7 @@ for item in entitlements.entitlements:
 ```python
 for page in client.iter_pages(
     "stock_news",
-    symbol="06999.HK",
+    symbol="603626.SH",
     source="xueqiu",
     limit=100,
     show_progress=True,

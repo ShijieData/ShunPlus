@@ -1,6 +1,6 @@
 [project]
 name = "shunplus"
-version = "0.1.0"
+version = "0.1.1"
 description = "ShunPlus 数据 API Python SDK"
 readme = "README.md"
 authors = [
